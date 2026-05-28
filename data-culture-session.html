@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Culture — Women Entrepreneurs, Bhopal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0c;
+    --surface: #1a1916;
+    --surface2: #232220;
+    --gold: #e8b86d;
+    --gold-light: #f5d49a;
+    --gold-dim: #a07c3e;
+    --rose: #d4756b;
+    --sage: #7aab8a;
+    --sky: #6b9fd4;
+    --lavender: #9b8ec4;
+    --text: #f0ebe0;
+    --text-muted: #8a8270;
+    --text-dim: #5a5448;
+    --border: #2e2b24;
+    --ideal: #7aab8a;
+    --reality: #d4756b;
+    --cost: #e8b86d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,184,109,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.3s forwards;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  /* BUSINESS NAV */
+  .nav-strip {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,14,12,0.95);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-strip::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    flex-shrink: 0;
+    padding: 16px 24px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-btn:hover { color: var(--text); }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .nav-emoji { font-size: 16px; }
+
+  /* MAIN CONTENT */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* BUSINESS SECTION */
+  .business-section { display: none; }
+  .business-section.active {
+    display: block;
+    animation: fadeUp 0.4s ease;
+  }
+
+  .business-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .business-icon {
+    width: 64px; height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+  }
+
+  .business-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .business-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  /* PILLAR TABS */
+  .pillar-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .pillar-tab {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pillar-tab:hover { border-color: var(--text-dim); color: var(--text); }
+
+  .pillar-tab.active-ideal { background: rgba(122,171,138,0.15); border-color: var(--ideal); color: var(--ideal); }
+  .pillar-tab.active-reality { background: rgba(212,117,107,0.15); border-color: var(--reality); color: var(--reality); }
+  .pillar-tab.active-cost { background: rgba(232,184,109,0.15); border-color: var(--cost); color: var(--cost); }
+
+  /* PILLAR CONTENT */
+  .pillar-content { display: none; }
+  .pillar-content.active { display: block; animation: fadeUp 0.3s ease; }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .data-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+    vertical-align: top;
+    color: var(--text);
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .tag-touchpoint {
+    display: inline-block;
+    background: rgba(122,171,138,0.12);
+    border: 1px solid rgba(122,171,138,0.3);
+    color: var(--sage);
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .system-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--sky);
+    background: rgba(107,159,212,0.1);
+    border: 1px solid rgba(107,159,212,0.25);
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  /* REALITY LIST */
+  .reality-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .reality-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--reality);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .reality-list li::before {
+    content: '✗';
+    color: var(--reality);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* COST CARDS */
+  .cost-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .cost-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .cost-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold-dim);
+  }
+
+  .cost-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--rose));
+  }
+
+  .cost-gap {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .cost-consequence {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  .rupee-highlight {
+    color: var(--rose);
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .badge-ideal { background: rgba(122,171,138,0.15); border: 1px solid rgba(122,171,138,0.3); color: var(--sage); }
+  .badge-reality { background: rgba(212,117,107,0.15); border: 1px solid rgba(212,117,107,0.3); color: var(--rose); }
+  .badge-cost { background: rgba(232,184,109,0.15); border: 1px solid rgba(232,184,109,0.3); color: var(--gold); }
+
+  /* INTERACTIVE QUESTION BOX */
+  .question-box {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .question-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(232,184,109,0.05) 0%, transparent 60%);
+  }
+
+  .question-box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .question-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .q-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .q-option {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .q-option:hover, .q-option.selected {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(232,184,109,0.08);
+  }
+
+  /* PROGRESS / OVERVIEW BAR */
+  .overview-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .overview-card {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .overview-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .overview-label { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 60px 20px 40px; }
+    .main { padding: 32px 16px 60px; }
+    .overview-strip { grid-template-columns: 1fr; }
+    .cost-grid { grid-template-columns: 1fr; }
+    .data-table { font-size: 13px; }
+    .data-table th, .data-table td { padding: 10px 12px; }
+    .business-title { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">📍 Bhopal · Women Entrepreneurs · Data Culture Session</div>
+  <h1>The <span>Data Gap</span><br>Every Business Has</h1>
+  <p>What should be captured, what actually happens, and what it costs you — across 7 types of businesses run by women.</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--ideal)"></div> Ideal Setup</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--reality)"></div> Ground Reality</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cost)"></div> Cost of the Gap</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-strip" id="navStrip">
+  <button class="nav-btn active" onclick="showBusiness('salon', this)"><span class="nav-emoji">🪞</span> Salon</button>
+  <button class="nav-btn" onclick="showBusiness('boutique', this)"><span class="nav-emoji">👗</span> Boutique</button>
+  <button class="nav-btn" onclick="showBusiness('retail', this)"><span class="nav-emoji">🛍️</span> Retail Clothing</button>
+  <button class="nav-btn" onclick="showBusiness('tiffin', this)"><span class="nav-emoji">🍱</span> Tiffin Service</button>
+  <button class="nav-btn" onclick="showBusiness('wellness', this)"><span class="nav-emoji">💆</span> Wellness Studio</button>
+  <button class="nav-btn" onclick="showBusiness('kiryana', this)"><span class="nav-emoji">🏪</span> Kiryana Store</button>
+  <button class="nav-btn" onclick="showBusiness('d2c', this)"><span class="nav-emoji">📦</span> D2C Business</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SALON -->
+  <div class="business-section active" id="salon">
+    <div class="business-header">
+      <div class="business-icon">🪞</div>
+      <div>
+        <div class="business-title">Salon / Beauty Parlour</div>
+        <div class="business-subtitle">One of the most relationship-driven businesses — yet most salons capture almost zero data about those relationships.</div>
+      </div>
+    </div>
+    <div class="overview-strip">
+      <div class="overview-card"><div class="overview-num" style="color:var(--sage)">7</div><div class="overview-label">Key data touchpoints that should be captured</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--rose)">~0</div><div class="overview-label">Touchpoints most salons actually track systematically</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--gold)">₹80K+</div><div class="overview-label">Estimated annual loss from untracked discounts alone</div></div>
+    </div>
+    <div class="pillar-tabs">
+      <button class="pillar-tab active-ideal" onclick="showPillar('salon','ideal',this,'ideal')">✅ Ideal Setup</button>
+      <button class="pillar-tab" onclick="showPillar('salon','reality',this,'reality')">📉 Ground Reality</button>
+      <button class="pillar-tab" onclick="showPillar('salon','cost',this,'cost')">💸 Cost of Gap</button>
+    </div>
+    <div class="pillar-content active" id="salon-ideal">
+      <div class="section-header"><div class="section-badge badge-ideal">✅ What Should Be Captured — And Where</div></div>
+      <table class="data-table">
+        <tr><th>Touchpoint</th><th>Ideal System</th><th>Data Captured</th></tr>
+        <tr><td><span class="tag-touchpoint">Booking</span></td><td><span class="system-name">Vyapar / Saloni App / Google Form</span></td><td>Name, phone, service requested, preferred staff, referral source</td></tr>
+        <tr><td><span class="tag-touchpoint">Service Delivery</span></td><td><span class="system-name">Service menu with staff tagging</span></td><td>Which staff, which service, duration, products used</td></tr>
+        <tr><td><span class="tag-touchpoint">Billing</span></td><td><span class="system-name">Digital POS / Petpooja / Vyapar</span></td><td>Services billed, payment mode, discount given, final amount</td></tr>
+        <tr><td><span class="tag-touchpoint">Post-Visit</span></td><td><span class="system-name">WhatsApp / Google Review link</span></td><td>Satisfaction score, likelihood to return, feedback</td></tr>
+        <tr><td><span class="tag-touchpoint">Re-engagement</span></td><td><span class="system-name">CRM reminder / WhatsApp Business</span></td><td>Days since last visit, trigger for follow-up message</td></tr>
+        <tr><td><span class="tag-touchpoint">Product Sales</span></td><td><span class="system-name">SKU-level billing</span></td><td>Which products sold, to whom, how often</td></tr>
+        <tr><td><span class="tag-touchpoint">Staff Performance</span></td><td><span class="system-name">Daily log / attendance app</span></td><td>Services per staff per day, revenue generated per staff</td></tr>
+      </table>
+    </div>
+    <div class="pillar-content" id="salon-reality">
+      <div class="section-header"><div class="section-badge badge-reality">📉 What Actually Happens</div></div>
+      <ul class="reality-list">
+        <li>Bookings managed on WhatsApp or by memory — no name saved systematically</li>
+        <li>No record of which staff performed which service</li>
+        <li>Billing via handwritten receipt or basic calculator — no digital trail</li>
+        <li>Discounts given verbally, never recorded anywhere</li>
+        <li>Zero follow-up after a customer visits — no system exists for it</li>
+        <li>Products sold as an afterthought, not tracked separately from services</li>
+        <li>Staff performance judged entirely by the owner's memory and perception</li>
+      </ul>
+    </div>
+    <div class="pillar-content" id="salon-cost">
+      <div class="section-header"><div class="section-badge badge-cost">💸 What This Gap Costs You</div></div>
+      <div class="cost-grid">
+        <div class="cost-card"><div class="cost-gap">No Customer History</div><div class="cost-consequence">A loyal customer of 2 years gets treated like a first-timer. No personalisation, no loyalty reward. She starts trying the new salon down the road.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Staff Revenue Tracking</div><div class="cost-consequence">Your best-performing staff member leaves. You don't realise she was driving <span class="rupee-highlight">40% of revenue</span> until bookings drop noticeably.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Service Profitability</div><div class="cost-consequence">You keep promoting a facial that takes 90 mins but earns ₹300. A hair spa takes 30 mins and earns ₹400. You never knew. You optimise for effort, not for profit.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Discount Tracking</div><div class="cost-consequence">You give "a little discount" to 15 customers a day. At year end, you've given away <span class="rupee-highlight">₹80,000+</span> with no record and no loyalty built from it.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Re-engagement System</div><div class="cost-consequence">60% of first-time customers never come back. You keep spending on new customer acquisition instead of retaining who you already have.</div></div>
+      </div>
+    </div>
+    <div class="question-box">
+      <div class="question-box-label">🙋 Session Activity — Raise Your Hand</div>
+      <h3>Do you know which service in your salon generates the most profit per hour of your time?</h3>
+      <div class="q-options">
+        <div class="q-option" onclick="toggleOption(this)">Yes, I track this</div>
+        <div class="q-option" onclick="toggleOption(this)">I have a rough idea</div>
+        <div class="q-option" onclick="toggleOption(this)">No, I've never thought about it</div>
+        <div class="q-option" onclick="toggleOption(this)">I want to start tracking</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOUTIQUE -->
+  <div class="business-section" id="boutique">
+    <div class="business-header">
+      <div class="business-icon">👗</div>
+      <div>
+        <div class="business-title">Boutique / Custom Clothing</div>
+        <div class="business-subtitle">Every stitch is custom, yet the business data is left entirely to chance. Order delays, dead stock, and lost customers are often data problems in disguise.</div>
+      </div>
+    </div>
+    <div class="overview-strip">
+      <div class="overview-card"><div class="overview-num" style="color:var(--sage)">7</div><div class="overview-label">Key data touchpoints that should be captured</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--rose)">1–2</div><div class="overview-label">Touchpoints most boutiques actually capture</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--gold)">₹50K+</div><div class="overview-label">Typical dead stock locked up in unsold inventory</div></div>
+    </div>
+    <div class="pillar-tabs">
+      <button class="pillar-tab active-ideal" onclick="showPillar('boutique','ideal',this,'ideal')">✅ Ideal Setup</button>
+      <button class="pillar-tab" onclick="showPillar('boutique','reality',this,'reality')">📉 Ground Reality</button>
+      <button class="pillar-tab" onclick="showPillar('boutique','cost',this,'cost')">💸 Cost of Gap</button>
+    </div>
+    <div class="pillar-content active" id="boutique-ideal">
+      <div class="section-header"><div class="section-badge badge-ideal">✅ What Should Be Captured — And Where</div></div>
+      <table class="data-table">
+        <tr><th>Touchpoint</th><th>Ideal System</th><th>Data Captured</th></tr>
+        <tr><td><span class="tag-touchpoint">Stock Purchase</span></td><td><span class="system-name">Vyapar / Zoho Inventory</span></td><td>Item, category, cost price, quantity, date received, supplier</td></tr>
+        <tr><td><span class="tag-touchpoint">Trial Room</span></td><td><span class="system-name">Staff observation log</span></td><td>What was tried, rejected, reason (price / fit / design)</td></tr>
+        <tr><td><span class="tag-touchpoint">Sale</span></td><td><span class="system-name">POS / digital billing</span></td><td>Item sold, size, price, customer name, phone, payment mode</td></tr>
+        <tr><td><span class="tag-touchpoint">Stitching Order</span></td><td><span class="system-name">Google Form / order sheet</span></td><td>Measurements, design preference, delivery date, advance, balance</td></tr>
+        <tr><td><span class="tag-touchpoint">Returns & Exchange</span></td><td><span class="system-name">Return log</span></td><td>Reason for return, item condition, resolution given</td></tr>
+        <tr><td><span class="tag-touchpoint">Festive Pre-orders</span></td><td><span class="system-name">Pre-order tracking sheet</span></td><td>Expected demand by category, lead time needed</td></tr>
+        <tr><td><span class="tag-touchpoint">Customer History</span></td><td><span class="system-name">CRM / WhatsApp labels</span></td><td>Purchase history, size preferences, spending range</td></tr>
+      </table>
+    </div>
+    <div class="pillar-content" id="boutique-reality">
+      <div class="section-header"><div class="section-badge badge-reality">📉 What Actually Happens</div></div>
+      <ul class="reality-list">
+        <li>Stock purchased based on owner's instinct or what the supplier pushes this season</li>
+        <li>Trial room rejections are completely invisible — no one notes what customers didn't buy and why</li>
+        <li>Bills written by hand with no linkage to a specific customer profile</li>
+        <li>Stitching orders tracked in a personal diary with no backup or deadline alerts</li>
+        <li>Returns handled case by case — patterns never identified</li>
+        <li>Festive stock over-purchased "just in case," creating dead stock every year</li>
+        <li>Loyal customers recognised only by face — no purchase data to personalise</li>
+      </ul>
+    </div>
+    <div class="pillar-content" id="boutique-cost">
+      <div class="section-header"><div class="section-badge badge-cost">💸 What This Gap Costs You</div></div>
+      <div class="cost-grid">
+        <div class="cost-card"><div class="cost-gap">No Inventory Tracking</div><div class="cost-consequence"><span class="rupee-highlight">₹50,000</span> worth of slow-moving stock sits in the back room. Capital is locked. New season stock can't be purchased.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Return Analysis</div><div class="cost-consequence">The same blouse design gets returned 8 times for poor stitching. Owner never connects the dots. Reputation suffers silently.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Customer History</div><div class="cost-consequence">A customer who spent <span class="rupee-highlight">₹15,000</span> last Diwali walks in. You have no idea what she bought or what to show her first.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Demand Forecasting</div><div class="cost-consequence">You run out of the most popular lehenga dupattas 10 days before Navratri. You could have pre-ordered if you had last year's data.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Order Tracking</div><div class="cost-consequence">Three orders get delayed because the diary was misplaced. Customers don't return. Word spreads through their social circles.</div></div>
+      </div>
+    </div>
+    <div class="question-box">
+      <div class="question-box-label">🙋 Session Activity</div>
+      <h3>Can you tell me right now — which fabric or design sold the most this year?</h3>
+      <div class="q-options">
+        <div class="q-option" onclick="toggleOption(this)">Yes, I have records</div>
+        <div class="q-option" onclick="toggleOption(this)">I remember roughly</div>
+        <div class="q-option" onclick="toggleOption(this)">I'd have to guess</div>
+        <div class="q-option" onclick="toggleOption(this)">I have no idea</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RETAIL CLOTHING -->
+  <div class="business-section" id="retail">
+    <div class="business-header">
+      <div class="business-icon">🛍️</div>
+      <div>
+        <div class="business-title">Retail Clothing Store</div>
+        <div class="business-subtitle">A readymade clothing store lives and dies by inventory decisions. Without data, every purchase order is a gamble and every season brings new dead stock.</div>
+      </div>
+    </div>
+    <div class="overview-strip">
+      <div class="overview-card"><div class="overview-num" style="color:var(--sage)">8</div><div class="overview-label">Key data touchpoints that should be captured</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--rose)">1–2</div><div class="overview-label">Touchpoints most retail stores actually capture</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--gold)">30–40%</div><div class="overview-label">Of inventory typically becomes dead stock without data</div></div>
+    </div>
+    <div class="pillar-tabs">
+      <button class="pillar-tab active-ideal" onclick="showPillar('retail','ideal',this,'ideal')">✅ Ideal Setup</button>
+      <button class="pillar-tab" onclick="showPillar('retail','reality',this,'reality')">📉 Ground Reality</button>
+      <button class="pillar-tab" onclick="showPillar('retail','cost',this,'cost')">💸 Cost of Gap</button>
+    </div>
+    <div class="pillar-content active" id="retail-ideal">
+      <div class="section-header"><div class="section-badge badge-ideal">✅ What Should Be Captured — And Where</div></div>
+      <table class="data-table">
+        <tr><th>Touchpoint</th><th>Ideal System</th><th>Data Captured</th></tr>
+        <tr><td><span class="tag-touchpoint">Stock Inward</span></td><td><span class="system-name">Inventory app / Vyapar</span></td><td>Brand, category, size set, colour, MRP, cost price, quantity, batch date</td></tr>
+        <tr><td><span class="tag-touchpoint">Billing / POS</span></td><td><span class="system-name">Retail POS / Marg / Busy</span></td><td>Item-wise sale, size, colour, price, customer phone, payment mode, time of day</td></tr>
+        <tr><td><span class="tag-touchpoint">Footfall Tracking</span></td><td><span class="system-name">Simple daily counter / tally</span></td><td>Walk-ins per day, conversion rate (buyers vs. browsers), peak hours</td></tr>
+        <tr><td><span class="tag-touchpoint">Size & Variant Demand</span></td><td><span class="system-name">Sales report by SKU</span></td><td>Which sizes sell fastest, which colours remain unsold, slow-moving variants</td></tr>
+        <tr><td><span class="tag-touchpoint">Discount & Sale Events</span></td><td><span class="system-name">Billing system with promo codes</span></td><td>Discount given per item, margin after discount, sell-through rate during sale</td></tr>
+        <tr><td><span class="tag-touchpoint">Customer Loyalty</span></td><td><span class="system-name">Loyalty card / WhatsApp CRM</span></td><td>Repeat purchase frequency, average spend, preferred category</td></tr>
+        <tr><td><span class="tag-touchpoint">Supplier Performance</span></td><td><span class="system-name">Purchase + return log</span></td><td>Quality issues, delivery timelines, return rate per supplier</td></tr>
+        <tr><td><span class="tag-touchpoint">End-of-Season Stock</span></td><td><span class="system-name">Stock ageing report</span></td><td>Items unsold for 60/90/120 days — triggers markdown or return decisions</td></tr>
+      </table>
+    </div>
+    <div class="pillar-content" id="retail-reality">
+      <div class="section-header"><div class="section-badge badge-reality">📉 What Actually Happens</div></div>
+      <ul class="reality-list">
+        <li>Stock purchased based on what the supplier salesperson pitches, not last season's sell-through data</li>
+        <li>Billing done item-wise but size and colour not recorded — only total amount</li>
+        <li>No footfall counter — owner has no idea how many people walked in vs. bought</li>
+        <li>Slow-moving sizes discovered only when physically checking shelves at season end</li>
+        <li>Discounts given inconsistently — one staff member gives 10%, another gives 20% on same item</li>
+        <li>Loyalty managed informally — "she's a regular" — with no purchase history backed by data</li>
+        <li>Dead stock donated or sold at heavy loss at season end, every year, with no learning applied</li>
+      </ul>
+    </div>
+    <div class="pillar-content" id="retail-cost">
+      <div class="section-header"><div class="section-badge badge-cost">💸 What This Gap Costs You</div></div>
+      <div class="cost-grid">
+        <div class="cost-card"><div class="cost-gap">No Size-wise Tracking</div><div class="cost-consequence">You always run out of M and L but have 40 pieces of XL unsold. Next order you repeat the same mistake because you have no data to correct it.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Footfall Data</div><div class="cost-consequence">On a busy Saturday, 80 people walk in and only 12 buy. You think it was a good day. It was actually a <span class="rupee-highlight">85% rejection rate</span> — a huge signal you missed.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Stock Ageing Alerts</div><div class="cost-consequence">A batch of kurtas sits for 5 months. You finally sell them at 50% off. If you'd flagged them at 60 days, a 15% discount would have cleared them profitably.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Discount Control</div><div class="cost-consequence">Two customers bought the same item on the same day — one paid ₹850, one paid <span class="rupee-highlight">₹650</span>. Different staff, no system, inconsistent pricing erodes trust and margin.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Customer Repeat Data</div><div class="cost-consequence">Your top 20 customers drive 40% of revenue. You don't know who they are. You spend on flyers for new customers while your loyalists quietly shift to a competitor.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Supplier Quality Data</div><div class="cost-consequence">One supplier's fabric consistently fades after 2 washes. Customers complain. You keep ordering from them because they offer the best price — not knowing the real cost is in returns and reputation.</div></div>
+      </div>
+    </div>
+    <div class="question-box">
+      <div class="question-box-label">🙋 Session Activity</div>
+      <h3>What percentage of the stock you bought this season is still unsold?</h3>
+      <div class="q-options">
+        <div class="q-option" onclick="toggleOption(this)">Less than 10%</div>
+        <div class="q-option" onclick="toggleOption(this)">10–25%</div>
+        <div class="q-option" onclick="toggleOption(this)">More than 25%</div>
+        <div class="q-option" onclick="toggleOption(this)">I don't know exactly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIFFIN -->
+  <div class="business-section" id="tiffin">
+    <div class="business-header">
+      <div class="business-icon">🍱</div>
+      <div>
+        <div class="business-title">Home Kitchen / Tiffin Service</div>
+        <div class="business-subtitle">One of the hardest-working businesses — yet most tiffin owners don't know their actual profit per meal. They are busy, not necessarily earning well.</div>
+      </div>
+    </div>
+    <div class="overview-strip">
+      <div class="overview-card"><div class="overview-num" style="color:var(--sage)">7</div><div class="overview-label">Key data touchpoints that should be captured</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--rose)">~1</div><div class="overview-label">Touchpoints most tiffin services actually track</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--gold)">₹8</div><div class="overview-label">Actual profit per tiffin in many untracked kitchens</div></div>
+    </div>
+    <div class="pillar-tabs">
+      <button class="pillar-tab active-ideal" onclick="showPillar('tiffin','ideal',this,'ideal')">✅ Ideal Setup</button>
+      <button class="pillar-tab" onclick="showPillar('tiffin','reality',this,'reality')">📉 Ground Reality</button>
+      <button class="pillar-tab" onclick="showPillar('tiffin','cost',this,'cost')">💸 Cost of Gap</button>
+    </div>
+    <div class="pillar-content active" id="tiffin-ideal">
+      <div class="section-header"><div class="section-badge badge-ideal">✅ What Should Be Captured — And Where</div></div>
+      <table class="data-table">
+        <tr><th>Touchpoint</th><th>Ideal System</th><th>Data Captured</th></tr>
+        <tr><td><span class="tag-touchpoint">Order Received</span></td><td><span class="system-name">WhatsApp Business + Google Sheet</span></td><td>Customer name, address, tiffin count, preference (Jain/regular), delivery time</td></tr>
+        <tr><td><span class="tag-touchpoint">Menu Planning</span></td><td><span class="system-name">Weekly menu log with cost sheet</span></td><td>Ingredient cost per dish, portions, wastage from previous week</td></tr>
+        <tr><td><span class="tag-touchpoint">Grocery Purchase</span></td><td><span class="system-name">Purchase log (even a notebook)</span></td><td>Ingredient-wise cost, vendor, date — to calculate cost per meal</td></tr>
+        <tr><td><span class="tag-touchpoint">Delivery</span></td><td><span class="system-name">Delivery confirmation tick-sheet</span></td><td>On-time vs. late, delivery person, customer confirmation</td></tr>
+        <tr><td><span class="tag-touchpoint">Payment Collection</span></td><td><span class="system-name">UPI + payment tracking sheet</span></td><td>Paid vs. unpaid, advance vs. due, monthly outstanding per customer</td></tr>
+        <tr><td><span class="tag-touchpoint">Cancellations</span></td><td><span class="system-name">Cancellation log</span></td><td>Who cancelled, how often, reason if possible</td></tr>
+        <tr><td><span class="tag-touchpoint">Customer Feedback</span></td><td><span class="system-name">Weekly WhatsApp check-in</span></td><td>Satisfaction, dish preferences, complaints, retention signals</td></tr>
+      </table>
+    </div>
+    <div class="pillar-content" id="tiffin-reality">
+      <div class="section-header"><div class="section-badge badge-reality">📉 What Actually Happens</div></div>
+      <ul class="reality-list">
+        <li>Orders managed entirely in the owner's head or one shared WhatsApp group</li>
+        <li>Menu decided morning-of based on what's available at home or from yesterday's grocery</li>
+        <li>Grocery bought daily from local vendor — no record of cost, no cost-per-meal calculation ever done</li>
+        <li>Payments collected informally — some customers pending for weeks, owner hesitates to ask</li>
+        <li>No delivery confirmation — disputes over "I didn't get it" handled by feel</li>
+        <li>Cancellations absorbed silently — food cooked, thrown away, no pattern noticed</li>
+        <li>Feedback received verbally, never actioned or tracked</li>
+      </ul>
+    </div>
+    <div class="pillar-content" id="tiffin-cost">
+      <div class="section-header"><div class="section-badge badge-cost">💸 What This Gap Costs You</div></div>
+      <div class="cost-grid">
+        <div class="cost-card"><div class="cost-gap">No Cost-Per-Meal Tracking</div><div class="cost-consequence">Owner charges ₹80 per tiffin, assuming good profit. Actual ingredient + gas + delivery cost is <span class="rupee-highlight">₹72</span>. She is working 10 hours a day for ₹8 per tiffin.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Cancellation Tracking</div><div class="cost-consequence">The same 5 customers cancel every Monday. Owner cooks for them anyway. Food wasted every single week — a predictable, avoidable loss.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Payment Tracking</div><div class="cost-consequence"><span class="rupee-highlight">₹4,000</span> outstanding from 6 customers. Owner feels uncomfortable asking. By month 3, she stops following up. Money is effectively lost.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Menu Performance Data</div><div class="cost-consequence">The dish that gets the most compliments never appears in the weekday menu. Data would show it drives the most customer retention and referrals.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Capacity Visibility</div><div class="cost-consequence">She can't confidently take on 10 new customers because she doesn't know her current maximum capacity — only by gut. Growth is blocked by lack of data, not by lack of demand.</div></div>
+      </div>
+    </div>
+    <div class="question-box">
+      <div class="question-box-label">🙋 Session Activity</div>
+      <h3>Do you know your exact profit per tiffin after all costs — ingredients, gas, packaging, delivery?</h3>
+      <div class="q-options">
+        <div class="q-option" onclick="toggleOption(this)">Yes, I've calculated it</div>
+        <div class="q-option" onclick="toggleOption(this)">I estimate roughly</div>
+        <div class="q-option" onclick="toggleOption(this)">Never calculated</div>
+        <div class="q-option" onclick="toggleOption(this)">I want to calculate now</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WELLNESS -->
+  <div class="business-section" id="wellness">
+    <div class="business-header">
+      <div class="business-icon">💆</div>
+      <div>
+        <div class="business-title">Wellness / Yoga / Fitness Studio</div>
+        <div class="business-subtitle">Member retention is everything in wellness — yet most studios have no system to even know when a member stops coming, let alone why.</div>
+      </div>
+    </div>
+    <div class="overview-strip">
+      <div class="overview-card"><div class="overview-num" style="color:var(--sage)">7</div><div class="overview-label">Key data touchpoints that should be captured</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--rose)">2</div><div class="overview-label">Touchpoints most studios actually capture (enrolment + fee)</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--gold)">₹24K+</div><div class="overview-label">Monthly revenue lost from missed enquiry follow-ups</div></div>
+    </div>
+    <div class="pillar-tabs">
+      <button class="pillar-tab active-ideal" onclick="showPillar('wellness','ideal',this,'ideal')">✅ Ideal Setup</button>
+      <button class="pillar-tab" onclick="showPillar('wellness','reality',this,'reality')">📉 Ground Reality</button>
+      <button class="pillar-tab" onclick="showPillar('wellness','cost',this,'cost')">💸 Cost of Gap</button>
+    </div>
+    <div class="pillar-content active" id="wellness-ideal">
+      <div class="section-header"><div class="section-badge badge-ideal">✅ What Should Be Captured — And Where</div></div>
+      <table class="data-table">
+        <tr><th>Touchpoint</th><th>Ideal System</th><th>Data Captured</th></tr>
+        <tr><td><span class="tag-touchpoint">Enquiry / Walk-in</span></td><td><span class="system-name">Enquiry register / CRM</span></td><td>Name, phone, how they heard about you, batch interest, follow-up date</td></tr>
+        <tr><td><span class="tag-touchpoint">Enrolment</span></td><td><span class="system-name">Digital admission form</span></td><td>Package, start date, fee paid, health goals, emergency contact</td></tr>
+        <tr><td><span class="tag-touchpoint">Attendance</span></td><td><span class="system-name">App / digital register</span></td><td>Batch, date, member name — enables trend analysis over time</td></tr>
+        <tr><td><span class="tag-touchpoint">Fee Collection</span></td><td><span class="system-name">Digital billing with expiry alert</span></td><td>Membership start/end, amount, mode, renewal due date</td></tr>
+        <tr><td><span class="tag-touchpoint">Drop-off Detection</span></td><td><span class="system-name">Automated alert / manual check</span></td><td>Last attendance date, days since last visit, follow-up triggered</td></tr>
+        <tr><td><span class="tag-touchpoint">Feedback & Progress</span></td><td><span class="system-name">Monthly check-in form</span></td><td>Weight/goal progress, satisfaction, likelihood to renew</td></tr>
+        <tr><td><span class="tag-touchpoint">Referrals</span></td><td><span class="system-name">Referral tracking log</span></td><td>Who referred whom — to reward and recognise your best advocates</td></tr>
+      </table>
+    </div>
+    <div class="pillar-content" id="wellness-reality">
+      <div class="section-header"><div class="section-badge badge-reality">📉 What Actually Happens</div></div>
+      <ul class="reality-list">
+        <li>Enquiries noted on paper or not at all — no follow-up system exists</li>
+        <li>Enrolment done verbally with only a fee receipt as the record</li>
+        <li>Attendance in a physical register that no one ever analyses</li>
+        <li>Membership expiry tracked by memory — expired members sometimes attend for free for weeks</li>
+        <li>No system to flag members who have stopped coming</li>
+        <li>Feedback received in conversations at the end of class, never written down</li>
+        <li>Referrals rewarded informally, never tracked — top referrers never properly recognised</li>
+      </ul>
+    </div>
+    <div class="pillar-content" id="wellness-cost">
+      <div class="section-header"><div class="section-badge badge-cost">💸 What This Gap Costs You</div></div>
+      <div class="cost-grid">
+        <div class="cost-card"><div class="cost-gap">No Enquiry Tracking</div><div class="cost-consequence">20 people enquired in January, 8 enrolled. What happened to the other 12? No one followed up. That's potentially <span class="rupee-highlight">₹24,000</span> in missed fee revenue.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Membership Expiry Alert</div><div class="cost-consequence">4 members attended for 6 weeks after their membership expired. <span class="rupee-highlight">₹6,000</span> collected late or not at all. The awkward conversation could have been avoided.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Drop-off Detection</div><div class="cost-consequence">A member who attended 5 days a week goes to 0. No one notices for 3 weeks. A simple "we miss you" on day 5 could have saved the membership.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Batch Occupancy Data</div><div class="cost-consequence">The 6am batch has 18 members and feels chaotic. The 8am batch has 4. Data would let you design an incentive to balance — but you don't know the numbers.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Referral Recognition</div><div class="cost-consequence">Your 3 most loyal members referred 11 new members between them. You have no idea. They've never been properly thanked. They're slowly feeling undervalued.</div></div>
+      </div>
+    </div>
+    <div class="question-box">
+      <div class="question-box-label">🙋 Session Activity</div>
+      <h3>How many members joined your studio in the last 3 months vs. how many left?</h3>
+      <div class="q-options">
+        <div class="q-option" onclick="toggleOption(this)">I know exactly</div>
+        <div class="q-option" onclick="toggleOption(this)">More joined than left, roughly</div>
+        <div class="q-option" onclick="toggleOption(this)">I'm not sure about those who left</div>
+        <div class="q-option" onclick="toggleOption(this)">I track joining but not leaving</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KIRYANA -->
+  <div class="business-section" id="kiryana">
+    <div class="business-header">
+      <div class="business-icon">🏪</div>
+      <div>
+        <div class="business-title">Kiryana / General Store</div>
+        <div class="business-subtitle">The neighbourhood store runs on trust and relationships — but cash flow, credit, and stock decisions made without data quietly drain the business every month.</div>
+      </div>
+    </div>
+    <div class="overview-strip">
+      <div class="overview-card"><div class="overview-num" style="color:var(--sage)">7</div><div class="overview-label">Key data touchpoints that should be captured</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--rose)">1</div><div class="overview-label">Most stores only track: total daily cash collected</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--gold)">₹9,600</div><div class="overview-label">Annual expiry wastage in a typical untracked store</div></div>
+    </div>
+    <div class="pillar-tabs">
+      <button class="pillar-tab active-ideal" onclick="showPillar('kiryana','ideal',this,'ideal')">✅ Ideal Setup</button>
+      <button class="pillar-tab" onclick="showPillar('kiryana','reality',this,'reality')">📉 Ground Reality</button>
+      <button class="pillar-tab" onclick="showPillar('kiryana','cost',this,'cost')">💸 Cost of Gap</button>
+    </div>
+    <div class="pillar-content active" id="kiryana-ideal">
+      <div class="section-header"><div class="section-badge badge-ideal">✅ What Should Be Captured — And Where</div></div>
+      <table class="data-table">
+        <tr><th>Touchpoint</th><th>Ideal System</th><th>Data Captured</th></tr>
+        <tr><td><span class="tag-touchpoint">Stock Purchase</span></td><td><span class="system-name">Vyapar / purchase log</span></td><td>Item, quantity, cost price, supplier, date received</td></tr>
+        <tr><td><span class="tag-touchpoint">Daily Sales</span></td><td><span class="system-name">POS / billing app</span></td><td>Item-wise sales, quantity, time of day, payment mode</td></tr>
+        <tr><td><span class="tag-touchpoint">Credit Given</span></td><td><span class="system-name">Khatabook / Vyapar ledger</span></td><td>Customer name, amount, date, repayment history, outstanding</td></tr>
+        <tr><td><span class="tag-touchpoint">Stock Count</span></td><td><span class="system-name">Weekly physical count vs. system</span></td><td>Shrinkage, theft, miscount identification</td></tr>
+        <tr><td><span class="tag-touchpoint">Expiry Tracking</span></td><td><span class="system-name">Expiry date log</span></td><td>Items nearing expiry — triggers discount or supplier return</td></tr>
+        <tr><td><span class="tag-touchpoint">Supplier Payments</span></td><td><span class="system-name">Payment log</span></td><td>Amount due, paid, outstanding — per supplier</td></tr>
+        <tr><td><span class="tag-touchpoint">Unmet Demand</span></td><td><span class="system-name">Demand request notepad</span></td><td>Items customers frequently ask for but you don't stock — signals new SKUs to add</td></tr>
+      </table>
+    </div>
+    <div class="pillar-content" id="kiryana-reality">
+      <div class="section-header"><div class="section-badge badge-reality">📉 What Actually Happens</div></div>
+      <ul class="reality-list">
+        <li>Stock purchased when shelves look empty or when the supplier salesperson calls and pushes</li>
+        <li>Billing done verbally or with basic mental calculations — no item-wise record</li>
+        <li>Credit given to neighbours on trust — tracked mentally, or in a rough notebook</li>
+        <li>No stock count ever done — "it all feels fine" until something is seriously off</li>
+        <li>Expiry checked only when a customer complains and hands back a product</li>
+        <li>Supplier payments managed through bank messages and memory alone</li>
+        <li>Customer requests for new items forgotten the same day — no note taken</li>
+      </ul>
+    </div>
+    <div class="pillar-content" id="kiryana-cost">
+      <div class="section-header"><div class="section-badge badge-cost">💸 What This Gap Costs You</div></div>
+      <div class="cost-grid">
+        <div class="cost-card"><div class="cost-gap">No Credit Tracking</div><div class="cost-consequence"><span class="rupee-highlight">₹12,000</span> outstanding across 15 customers. Owner remembers 8 of them. ₹4,000 is effectively written off because there's no record to follow up on.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Expiry Management</div><div class="cost-consequence">A crate of biscuits expires. <span class="rupee-highlight">₹800</span> thrown away. This happens every month. That's ₹9,600 per year — silent, invisible loss.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Sales Data by SKU</div><div class="cost-consequence">You stock 6 variants of a namkeen brand. 1 sells. 5 gather dust. You don't know which one. Supplier keeps pushing all 6. You keep saying yes.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Demand Signal Tracking</div><div class="cost-consequence">9 customers asked for a specific atta brand in one week. You don't stock it. You don't note it. You lose those sales — and those customers — to the store two lanes away.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Purchase Cost Tracking</div><div class="cost-consequence">You sell a product for ₹45. Bought it for ₹38 last month, <span class="rupee-highlight">₹42</span> this month. You didn't notice. Margin has shrunk. You find out only when "money feels tight."</div></div>
+      </div>
+    </div>
+    <div class="question-box">
+      <div class="question-box-label">🙋 Session Activity</div>
+      <h3>How much credit is outstanding from customers right now — and can you name all of them?</h3>
+      <div class="q-options">
+        <div class="q-option" onclick="toggleOption(this)">I track it digitally</div>
+        <div class="q-option" onclick="toggleOption(this)">I have a notebook for it</div>
+        <div class="q-option" onclick="toggleOption(this)">I remember roughly</div>
+        <div class="q-option" onclick="toggleOption(this)">Some credit I've already forgotten</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D2C -->
+  <div class="business-section" id="d2c">
+    <div class="business-header">
+      <div class="business-icon">📦</div>
+      <div>
+        <div class="business-title">D2C Business (Direct to Consumer)</div>
+        <div class="business-subtitle">D2C businesses — selling pickles, candles, skincare, handmade goods, or fashion via Instagram & WhatsApp — are digital-first yet often the most data-blind. The platform has the data. The owner doesn't.</div>
+      </div>
+    </div>
+    <div class="overview-strip">
+      <div class="overview-card"><div class="overview-num" style="color:var(--sage)">9</div><div class="overview-label">Key data touchpoints that should be captured</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--rose)">2–3</div><div class="overview-label">Touchpoints most D2C owners actually own (orders + payment)</div></div>
+      <div class="overview-card"><div class="overview-num" style="color:var(--gold)">60–70%</div><div class="overview-label">Of Instagram followers who never become buyers — unknown why</div></div>
+    </div>
+    <div class="pillar-tabs">
+      <button class="pillar-tab active-ideal" onclick="showPillar('d2c','ideal',this,'ideal')">✅ Ideal Setup</button>
+      <button class="pillar-tab" onclick="showPillar('d2c','reality',this,'reality')">📉 Ground Reality</button>
+      <button class="pillar-tab" onclick="showPillar('d2c','cost',this,'cost')">💸 Cost of Gap</button>
+    </div>
+    <div class="pillar-content active" id="d2c-ideal">
+      <div class="section-header"><div class="section-badge badge-ideal">✅ What Should Be Captured — And Where</div></div>
+      <table class="data-table">
+        <tr><th>Touchpoint</th><th>Ideal System</th><th>Data Captured</th></tr>
+        <tr><td><span class="tag-touchpoint">Social Media Discovery</span></td><td><span class="system-name">Instagram Insights / Meta Ads Manager</span></td><td>Reach, profile visits, which post drove the most traffic, follower demographics</td></tr>
+        <tr><td><span class="tag-touchpoint">Enquiry / DM</span></td><td><span class="system-name">WhatsApp Business / CRM like Zoho</span></td><td>Lead name, product interest, city, how they found you, response time</td></tr>
+        <tr><td><span class="tag-touchpoint">Order Placement</span></td><td><span class="system-name">Order form (Google Form / Shopify / Instamojo)</span></td><td>Product, variant, quantity, address, phone, payment method, order date</td></tr>
+        <tr><td><span class="tag-touchpoint">Production / Inventory</span></td><td><span class="system-name">Production tracker / spreadsheet</span></td><td>Batch size, ingredient cost, units produced, cost per unit, yield</td></tr>
+        <tr><td><span class="tag-touchpoint">Shipping & Fulfilment</span></td><td><span class="system-name">Shiprocket / Delhivery dashboard</span></td><td>Dispatch date, delivery time, RTO (return-to-origin) rate, courier performance</td></tr>
+        <tr><td><span class="tag-touchpoint">Payment Collection</span></td><td><span class="system-name">Razorpay / UPI with order tagging</span></td><td>Order-wise payment, prepaid vs. COD ratio, pending payments, refunds</td></tr>
+        <tr><td><span class="tag-touchpoint">Customer Review / UGC</span></td><td><span class="system-name">WhatsApp follow-up / Google Form</span></td><td>Satisfaction rating, whether they'd reorder, photo review for social proof</td></tr>
+        <tr><td><span class="tag-touchpoint">Repeat Purchase</span></td><td><span class="system-name">Customer purchase history sheet</span></td><td>Order frequency, average order value, favourite products, last order date</td></tr>
+        <tr><td><span class="tag-touchpoint">Returns & Complaints</span></td><td><span class="system-name">Return log / complaint tracker</span></td><td>Reason for return, product involved, resolution, refund issued</td></tr>
+      </table>
+    </div>
+    <div class="pillar-content" id="d2c-reality">
+      <div class="section-header"><div class="section-badge badge-reality">📉 What Actually Happens</div></div>
+      <ul class="reality-list">
+        <li>Orders received via Instagram DMs and WhatsApp — tracked in the owner's head or in one chaotic group</li>
+        <li>No order form — address and details collected in back-and-forth chat messages, often with errors</li>
+        <li>Cost per unit never calculated — pricing based on "what feels right" or what a similar brand charges</li>
+        <li>Shipping booked manually per order — no dashboard, no RTO rate awareness</li>
+        <li>Payments collected via UPI but never mapped to specific orders — reconciliation done by memory</li>
+        <li>No follow-up after delivery — no review collected, no re-purchase nudge</li>
+        <li>No tracking of which Instagram post or reel drove the most enquiries or sales</li>
+        <li>Returns handled emotionally, case by case — patterns never identified</li>
+        <li>Customer database = scattered DMs across Instagram, WhatsApp, and one notebook</li>
+      </ul>
+    </div>
+    <div class="pillar-content" id="d2c-cost">
+      <div class="section-header"><div class="section-badge badge-cost">💸 What This Gap Costs You</div></div>
+      <div class="cost-grid">
+        <div class="cost-card"><div class="cost-gap">No Cost-Per-Unit Tracking</div><div class="cost-consequence">You sell a jar of homemade pickle for ₹250. Ingredient + packaging + label + shipping = <span class="rupee-highlight">₹230</span>. You're running a business at ₹20 profit while working 6 hours per batch.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Content Performance Data</div><div class="cost-consequence">You posted 20 reels this month. 2 of them drove 90% of your enquiries. You don't know which 2. Next month you post 20 more, hoping for the same magic.</div></div>
+        <div class="cost-card"><div class="cost-gap">No RTO Tracking</div><div class="cost-consequence">15% of your COD orders are being returned undelivered (RTO). Each return costs you shipping both ways + packaging. That's <span class="rupee-highlight">₹5,000+ per month</span> in invisible losses.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Repeat Purchase System</div><div class="cost-consequence">You have 200 past customers. If 20% reordered just once more this month, that's 40 orders — without spending a rupee on new customer marketing. But you have no list to reach them.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Review Collection System</div><div class="cost-consequence">Customers love your product but you have no process to capture that love. A competitor with fewer sales but more reviews wins the trust of the next buyer scrolling Instagram.</div></div>
+        <div class="cost-card"><div class="cost-gap">No Order-Payment Reconciliation</div><div class="cost-consequence">At month end, 8 orders have no corresponding UPI payment. Some were delayed, some never paid. You only discover this when your bank balance doesn't match your order count — weeks later.</div></div>
+      </div>
+    </div>
+    <div class="question-box">
+      <div class="question-box-label">🙋 Session Activity</div>
+      <h3>Which Instagram post or reel brought you the most orders in the last 3 months?</h3>
+      <div class="q-options">
+        <div class="q-option" onclick="toggleOption(this)">I track this in Insights</div>
+        <div class="q-option" onclick="toggleOption(this)">I remember which one did well</div>
+        <div class="q-option" onclick="toggleOption(this)">I notice likes but not orders</div>
+        <div class="q-option" onclick="toggleOption(this)">I had no idea this was trackable</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CLOSING BANNER -->
+<div style="background: var(--surface); border-top: 1px solid var(--border); padding: 48px 24px; text-align: center;">
+  <div style="max-width: 600px; margin: 0 auto;">
+    <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:16px;">The One Thing to Remember</div>
+    <div style="font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--text); line-height:1.4; margin-bottom:16px;">Data culture doesn't mean dashboards or Excel sheets.</div>
+    <div style="font-size:15px; color:var(--text-muted); line-height:1.8;">It means making <strong style="color:var(--gold)">one decision per week</strong> based on a number, not a feeling.<br>Start small. One question. One number. One action.</div>
+  </div>
+</div>
+
+<script>
+  function showBusiness(id, btn) {
+    document.querySelectorAll('.business-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  function showPillar(business, pillar, btn, type) {
+    const section = document.getElementById(business);
+    section.querySelectorAll('.pillar-content').forEach(p => p.classList.remove('active'));
+    section.querySelectorAll('.pillar-tab').forEach(b => {
+      b.classList.remove('active-ideal','active-reality','active-cost');
+    });
+    section.querySelector('#' + business + '-' + pillar).classList.add('active');
+    btn.classList.add('active-' + type);
+  }
+
+  function toggleOption(el) {
+    const siblings = el.parentElement.querySelectorAll('.q-option');
+    siblings.forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+</script>
+</body>
+</html>
